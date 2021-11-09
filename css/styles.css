@@ -38,6 +38,26 @@ button:hover {
   cursor: pointer;
 }
 
+.yellow-square {
+  width: 0.5rem;
+  height: 45px;
+  background-color: rgb(245, 197, 24);
+}
+
+.search-results-text {
+  color: white;
+  font-weight: 300;
+  font-size: 0.88rem;
+}
+
+.back-button {
+  background-color: rgb(245, 197, 24);
+  border: none;
+  width: 75px;
+  height: 30px;
+  border-radius: 3px;
+}
+
 @media screen and (min-width: 768px) {
   h1 {
     font-size: 4rem;

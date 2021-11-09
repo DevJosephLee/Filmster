@@ -20,10 +20,30 @@
   margin-right: 5px;
 }
 
-.margin-right-15px {
-  margin-right: 15px;
+.margin-right-10px {
+  margin-right: 10px;
 }
 
 .justify-center {
   justify-content: center;
 }
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.view {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.align-center {
+  align-items: center;
+}
+
+/* .text-align-end {
+  text-align: end;
+} */

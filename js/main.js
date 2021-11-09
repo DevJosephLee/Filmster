@@ -1,5 +1,9 @@
 var $form = document.querySelector('form');
 var $searchInput = document.querySelector('.search-input');
+var $logoButton = document.querySelector('.logo-button');
+var $backButton = document.querySelector('.back-button');
+var $viewNodeList = document.querySelectorAll('.view');
+
 
 function search() {
   event.preventDefault();
@@ -14,3 +18,28 @@ function search() {
 }
 
 $form.addEventListener('submit', search);
+
+function goHome() {
+  for (var i = 0; i < $viewNodeList.length; i++) {
+    if ($viewNodeList[i].getAttribute('data-view') !== 'search-form') {
+      $viewNodeList[i].className = 'view hidden';
+    } else {
+      $viewNodeList[i].className = 'view'
+    }
+  }
+}
+
+$logoButton.addEventListener('click', goHome);
+
+
+function backButton() {
+  for (var i = 0; i < $viewNodeList.length; i++) {
+    if ($viewNodeList[i].getAttribute('data-view') !== data.view) {
+      $viewNodeList[i].className = 'view hidden';
+    } else {
+      $viewNodeList[i].className = 'view';
+    }
+  }
+}
+
+$backButton.addEventListener('click', backButton);
