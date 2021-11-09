@@ -3,3 +3,19 @@
   margin-right: auto;
   margin-left: auto;
 }
+
+.row {
+display: flex;
+}
+
+.margin-top-bottom-1 {
+margin: 1.5rem 0;
+}
+
+.margin-top-bottom-2 {
+margin: 1rem 0;
+}
+
+.margin-right-5px {
+margin-right: 5px;
+}
