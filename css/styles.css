@@ -1,0 +1,45 @@
+h1 {
+  font-family: 'Revalia', cursive;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.background-black {
+  background-color: black;
+}
+
+.fa-tv {
+  color : black;
+}
+
+.logo-button {
+  background-color: rgb(245, 197, 24);
+  padding: 0.5rem;
+  border-radius: 3px;
+  border: none;
+  font-family: 'Revalia', cursive;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: rgb(245, 197, 24);
+}
+
+.search-button {
+  width: 1rem;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 4rem;
+  }
+}
