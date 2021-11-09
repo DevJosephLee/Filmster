@@ -1,7 +1,12 @@
 h1 {
   font-family: 'Revalia', cursive;
-  color: white;
   font-size: 1.5rem;
+}
+
+h3,
+h1,
+span {
+  color: white;
 }
 
 .background-black {
@@ -34,6 +39,14 @@ h1 {
   width: 1rem;
 }
 
+.info-button {
+  background-color: rgb(245, 197, 24);
+  border : none;
+  border-radius: 3px;
+  width: 65px;
+  padding: 0.3rem;
+}
+
 button:hover {
   cursor: pointer;
 }
@@ -45,9 +58,17 @@ button:hover {
 }
 
 .search-results-text {
-  color: white;
   font-weight: 300;
   font-size: 0.88rem;
+}
+
+.search-result-name {
+  font-size: 0.88rem;
+}
+
+.search-result-card {
+  /* border-bottom: 1px solid white; */
+  padding-bottom: 1rem;
 }
 
 .back-button {
@@ -58,8 +79,66 @@ button:hover {
   border-radius: 3px;
 }
 
+.search-result-poster {
+  width: 100px;
+}
+
+.search-result-actor-names {
+  color: white;
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+.border-bottom-white {
+  border-bottom: 1px solid white;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding-inline-start: 0;
+}
+
+span {
+  font-weight: 100;
+}
+
 @media screen and (min-width: 768px) {
   h1 {
     font-size: 4rem;
+  }
+
+  .container {
+    width: 80%;
+  }
+
+  .text-align-center {
+    text-align: start;
+  }
+
+  .search-result-card {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+  }
+
+  .search-result-poster {
+    width: 170px;
+    margin-right: 3rem;
+  }
+
+  .search-result-name {
+    font-size: 1.7rem;
+  }
+
+  .search-result-actor-names {
+    font-size: 1rem;
+  }
+
+  .line-height-1 {
+    line-height: 20px;
   }
 }

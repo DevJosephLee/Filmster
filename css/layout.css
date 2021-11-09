@@ -44,6 +44,10 @@
   align-items: center;
 }
 
-/* .text-align-end {
-  text-align: end;
-} */
+.text-align-center {
+  text-align: center;
+}
+
+.line-height-1 {
+  line-height: 7px;
+}
