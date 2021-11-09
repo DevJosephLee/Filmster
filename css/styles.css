@@ -1,31 +1,43 @@
 h1 {
-font-family: 'Revalia', cursive;
-color: white;
-font-size: 1.5rem;
+  font-family: 'Revalia', cursive;
+  color: white;
+  font-size: 1.5rem;
 }
 
 .background-black {
-background-color: black;
+  background-color: black;
 }
 
 .logo-button {
-background-color: rgb(245, 197, 24);
-padding: 0.5rem;
-border-radius: 3px;
-border: none;
-font-family: 'Revalia', cursive;
+  background-color: rgb(245, 197, 24);
+  padding: 0.5rem;
+  border-radius: 3px;
+  border: none;
+  font-family: 'Revalia', cursive;
 }
 
 .search-button {
-width: 17rem;
-padding: 1rem;
+  width: 100%;
+  padding: 1rem;
+}
+
+.search-button-container {
+  position: relative;
 }
 
 .fa-tv {
-color : black
+  color : black
+}
+
+.fa-search {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  bottom: 15px;
+  font-size: 1.5rem;
 }
 
 button,
 i:hover {
-cursor: pointer;
+  cursor: pointer;
 }
