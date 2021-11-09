@@ -16,28 +16,31 @@ h1 {
   font-family: 'Revalia', cursive;
 }
 
-.search-button {
+.search-input {
   width: 100%;
   padding: 1rem;
 }
 
-.search-button-container {
-  position: relative;
+.search-input:focus {
+  outline: none;
+  border-color: rgb(245, 197, 24);
 }
 
 .fa-tv {
-  color : black
+  color : black;
 }
 
-.fa-search {
-  position: absolute;
-  right: 20px;
-  top: 15px;
-  bottom: 15px;
-  font-size: 1.5rem;
+.search-button {
+  width: 1rem;
 }
 
 button,
 i:hover {
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 4rem;
+  }
 }
