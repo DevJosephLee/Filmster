@@ -8,6 +8,10 @@ h1 {
   background-color: black;
 }
 
+.fa-tv {
+  color : black;
+}
+
 .logo-button {
   background-color: rgb(245, 197, 24);
   padding: 0.5rem;
@@ -26,16 +30,11 @@ h1 {
   border-color: rgb(245, 197, 24);
 }
 
-.fa-tv {
-  color : black;
-}
-
 .search-button {
   width: 1rem;
 }
 
-button,
-i:hover {
+button:hover {
   cursor: pointer;
 }
 
