@@ -15,3 +15,17 @@ border-radius: 3px;
 border: none;
 font-family: 'Revalia', cursive;
 }
+
+.search-button {
+width: 17rem;
+padding: 1rem;
+}
+
+.fa-tv {
+color : black
+}
+
+button,
+i:hover {
+cursor: pointer;
+}

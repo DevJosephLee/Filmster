@@ -19,3 +19,8 @@ margin: 1rem 0;
 .margin-right-5px {
 margin-right: 5px;
 }
+
+
+.justify-center {
+justify-content: center;
+}
