@@ -83,7 +83,7 @@ button:hover {
   width: 100px;
 }
 
-.search-result-actor-names {
+.search-result-overview {
   color: white;
   font-style: italic;
   font-size: 0.8rem;
@@ -134,7 +134,7 @@ span {
     font-size: 1.7rem;
   }
 
-  .search-result-actor-names {
+  .search-result-overview {
     font-size: 1rem;
   }
 
