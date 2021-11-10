@@ -25,13 +25,7 @@ function search() {
 $form.addEventListener('submit', search);
 
 function clickLogo() {
-  for (var i = 0; i < $viewNodeList.length; i++) {
-    if ($viewNodeList[i].getAttribute('data-view') !== 'search-form') {
-      $viewNodeList[i].className = 'view hidden';
-    } else {
-      $viewNodeList[i].className = 'view'
-    }
-  }
+  switchViews('search-form');
   data.view = 'search-form';
   $form.reset();
   data.searchResult = [];
@@ -43,14 +37,7 @@ $logoButton.addEventListener('click', clickLogo);
 
 
 function clickBackButton() {
-  for (var i = 0; i < $viewNodeList.length; i++) {
-    if ($viewNodeList[i].getAttribute('data-view') !== data.previousView) {
-      $viewNodeList[i].className = 'view hidden';
-    } else {
-      $viewNodeList[i].className = 'view';
-    }
-  }
-  history.back();
+  switchViews('search-form');
   $searchedList.textContent = '';
 }
 
