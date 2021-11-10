@@ -43,6 +43,7 @@ function clickBackButton() {
 
 $backButton.addEventListener('click', clickBackButton);
 
+
 function switchViews(viewName) {
   for (var i = 0; i < $viewNodeList.length; i++) {
     if ($viewNodeList[i].getAttribute('data-view') === viewName) {
@@ -90,6 +91,7 @@ function generateSearchedMoviesResults(data) {
     var $infoButton = document.createElement('button');
     $infoButton.className = 'info-button';
     $infoButton.textContent = 'INFO';
+    $infoButton.setAttribute('movie-id', data.searchResult[i].id);
     $searchResultInfoDiv.appendChild($infoButton);
 
     $searchedList.append($root);
@@ -101,3 +103,45 @@ document.addEventListener('DOMContentLoaded', function() {
   generateSearchedMoviesResults(data);
   $searchResultText.textContent = 'Search results for ' + data.searchName;
 })
+
+// function clickInfoButton(event) {
+//   if (!event.target.matches('button')) {
+//     return;
+//   }
+//   var xhr = new XMLHttpRequest();
+//   xhr.open('GET', 'https://api.themoviedb.org/3/movie/' + event.target.getAttribute('movie-id') + '?api_key=9ed2615a579d77bb72ade801a8902712&append_to_response=credits,releases');
+//   xhr.responseType = 'json';
+//   xhr.addEventListener('load', function () {
+//     console.log(xhr.status);
+//     console.log(xhr.response);
+//     console.log(xhr.response.release_date);
+//     console.log(xhr.response.release_date.slice(0, 4));
+//     console.log(xhr.response.vote_average);
+//     console.log(xhr.response.genres);
+//     for (var j = 0; j < 7; j++) {
+//       console.log(xhr.response.credits.cast[j].name + ' as ' + xhr.response.credits.cast[j].character);
+//     }
+//     for (var h = 0; h < xhr.response.credits.crew.length; h++) {
+//       if (xhr.response.credits.crew[h].known_for_department === 'Directing') {
+//         console.log('director(s):', xhr.response.credits.crew[h].name);
+//       }
+//     }
+//     for (var i = 0; i < xhr.response.releases.countries.length; i++) {
+//       var movieRatingForCountries = xhr.response.releases.countries[i].iso_3166_1;
+//       if (movieRatingForCountries === 'US') {
+//         movieRating = xhr.response.releases.countries[i].certification;
+//       }
+//     }
+//     console.log('rating:', movieRating);
+//     console.log('runtime:', xhr.response.runtime);
+//     console.log('overview:', xhr.response.overview);
+//     console.log(xhr.response.production_companies);
+//   })
+//   xhr.send();
+// }
+
+// $searchedList.addEventListener('click', clickInfoButton)
+
+// function generateMovieInfo(data) {
+
+// }
