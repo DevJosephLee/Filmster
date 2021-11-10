@@ -6,7 +6,6 @@ var $viewNodeList = document.querySelectorAll('.view');
 var $searchedList = document.querySelector('.searched-list');
 var $searchResultText = document.querySelector('.search-results-text');
 
-
 function search() {
   event.preventDefault();
   var xhr = new XMLHttpRequest();
@@ -17,6 +16,9 @@ function search() {
       var title = xhr.response.results[i].title;
       var releaseYear = xhr.response.results[i].release_date.slice(0, 4);
       var posterPath = 'https://image.tmdb.org/t/p/w500' + xhr.response.results[i].poster_path;
+      if (xhr.response.results[i].poster_path === null) {
+        posterPath = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZo8HJXlzsEbcnfi6ciTTC9I1SF8Pb0wY6A&usqp=CAU';
+      }
       var overview = xhr.response.results[i].overview;
       function generateSearchedMoviesResults() {
         var $root = document.createElement('li');
@@ -56,16 +58,17 @@ function search() {
         return $root;
       }
       $searchedList.append(generateSearchedMoviesResults());
-      $searchResultText.textContent = 'Search results for ' + $searchInput.value;
     }
   });
   xhr.send();
   switchViews();
+  data.view = 'search-form';
+  $searchResultText.textContent = 'Search results for ' + $searchInput.value;
 }
 
 $form.addEventListener('submit', search);
 
-function goHome() {
+function clickLogo() {
   for (var i = 0; i < $viewNodeList.length; i++) {
     if ($viewNodeList[i].getAttribute('data-view') !== 'search-form') {
       $viewNodeList[i].className = 'view hidden';
@@ -73,12 +76,14 @@ function goHome() {
       $viewNodeList[i].className = 'view'
     }
   }
+  data.view = 'search-form';
+  $form.reset();
 }
 
-$logoButton.addEventListener('click', goHome);
+$logoButton.addEventListener('click', clickLogo);
 
 
-function backButton() {
+function clickBackButton() {
   for (var i = 0; i < $viewNodeList.length; i++) {
     if ($viewNodeList[i].getAttribute('data-view') !== data.view) {
       $viewNodeList[i].className = 'view hidden';
@@ -88,7 +93,7 @@ function backButton() {
   }
 }
 
-$backButton.addEventListener('click', backButton);
+$backButton.addEventListener('click', clickBackButton);
 
 function switchViews() {
   for (var i = 0; i < $viewNodeList.length; i++) {

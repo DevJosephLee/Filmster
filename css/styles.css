@@ -67,7 +67,6 @@ button:hover {
 }
 
 .search-result-card {
-  /* border-bottom: 1px solid white; */
   padding-bottom: 1rem;
 }
 
@@ -99,10 +98,6 @@ li {
 
 ul {
   padding-inline-start: 0;
-}
-
-span {
-  font-weight: 100;
 }
 
 @media screen and (min-width: 768px) {
