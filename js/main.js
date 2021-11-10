@@ -4,6 +4,7 @@ var $logoButton = document.querySelector('.logo-button');
 var $backButton = document.querySelector('.back-button');
 var $viewNodeList = document.querySelectorAll('.view');
 var $searchedList = document.querySelector('.searched-list');
+var $searchResultText = document.querySelector('.search-results-text');
 
 
 function search() {
@@ -21,7 +22,7 @@ function search() {
         var $root = document.createElement('li');
 
         var $searchResultCardDiv = document.createElement('div');
-        $searchResultCardDiv.className = 'search-result-card border-bottom-white padding-top';
+        $searchResultCardDiv.className = 'search-result-card border-bottom-white padding-top-bottom';
         $root.appendChild($searchResultCardDiv);
 
         var $textAlignCenterDiv = document.createElement('div');
@@ -55,9 +56,11 @@ function search() {
         return $root;
       }
       $searchedList.append(generateSearchedMoviesResults());
+      $searchResultText.textContent = 'Search results for ' + $searchInput.value;
     }
   });
   xhr.send();
+  switchViews();
 }
 
 $form.addEventListener('submit', search);
@@ -87,12 +90,12 @@ function backButton() {
 
 $backButton.addEventListener('click', backButton);
 
-// function switchViews(event) {
-//   for (var i = 0; i < $viewNodeList.length; i++) {
-//     if (event.target.getAttribute('data-view') !== $viewNodeList[i].getAttribute('data-view')) {
-//       $viewNodeList[i].className = 'view hidden';
-//     } else {
-//       $viewNodeList[i].className = 'view';
-//     }
-//   }
-// }
+function switchViews() {
+  for (var i = 0; i < $viewNodeList.length; i++) {
+    if (event.target.getAttribute('data-view') !== $viewNodeList[i].getAttribute('data-view')) {
+      $viewNodeList[i].className = 'view hidden';
+    } else {
+      $viewNodeList[i].className = 'view';
+    }
+  }
+}

@@ -48,6 +48,6 @@
   text-align: center;
 }
 
-/* .line-height-1 {
-  line-height: 7px;
-} */
+.padding-top-bottom {
+  padding: 1rem 0;
+}

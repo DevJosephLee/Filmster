@@ -29,7 +29,7 @@
         <div class="row justify-center margin-top-bottom-1">
           <h1>Movie Finder</h1>
         </div>
-        <form>
+        <form data-view="search-results">
           <div class="row justify-center">
             <input type="text" placeholder="Search Movies" class="search-input">
             <button type="submit">
@@ -39,12 +39,12 @@
         </form>
       </div>
     </div>
-    <div data-view="search-results" class="view">
+    <div data-view="search-results" class="view hidden">
       <div class="container">
         <div class="row margin-top-bottom-2 justify-space-between align-center">
           <div class="row search-results-text-box">
             <div class="yellow-square margin-right-10px"></div>
-            <h3 class="search-results-text">Search results for space jam</h3>
+            <h3 class="search-results-text"></h3>
           </div>
           <div class="row">
             <button class="back-button">BACK</button>
