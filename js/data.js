@@ -1,6 +1,8 @@
 /* exported data */
-data = {
+var data = {
   view: 'search-form',
+  searchName: '',
+  searchResult: [],
   searched: {}
 }
 
