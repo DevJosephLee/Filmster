@@ -119,14 +119,15 @@ function clickInfoButton(event) {
   xhr.open('GET', 'https://api.themoviedb.org/3/movie/' + event.target.getAttribute('movie-id') + '?api_key=9ed2615a579d77bb72ade801a8902712&append_to_response=credits,releases');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    data.clickedMovie.release_date = xhr.response.release_date;
-    data.clickedMovie.release_year = xhr.response.release_date.slice(0, 4);
-    data.clickedMovie.vote_average = xhr.response.vote_average;
-    console.log(xhr.response.genres);
-    $infoPagePoster.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + xhr.response.poster_path);
-    for (var j = 0; j < 7; j++) {
-      console.log(xhr.response.credits.cast[j].name + ' as ' + xhr.response.credits.cast[j].character);
-      console.log('https://image.tmdb.org/t/p/w500' + xhr.response.credits.cast[j].profile_path);
+    data.clickedMovie = xhr.response;
+    $infoPagePoster.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.poster_path);
+    // data.clickedMovie[releaseDate] = xhr.response.release_date;
+    // var releaseDate = xhr.response.release_date;
+    // data.clickedMovie.releaseDate = releaseDate
+    // data.clickedMovie.releaseYear = xhr.response.release_date.slice(0, 4);
+    // data.clickedMovie.voteAverage = xhr.response.vote_average;
+    for (var k = 0; k < xhr.response.genres.length; k++) {
+      console.log(xhr.response.genres[k].name);
     }
     for (var h = 0; h < xhr.response.credits.crew.length; h++) {
       if (xhr.response.credits.crew[h].known_for_department === 'Directing') {
@@ -143,6 +144,8 @@ function clickInfoButton(event) {
     console.log('runtime:', xhr.response.runtime);
     console.log('overview:', xhr.response.overview);
     console.log(xhr.response.production_companies);
+
+    generateCastCards(data);
   })
   xhr.send();
   switchViews('movie-info');
@@ -150,7 +153,9 @@ function clickInfoButton(event) {
 
 $searchedList.addEventListener('click', clickInfoButton);
 
-function generateCastCards(event) {
+function generateCastCards(data) {
+
+  for (var j = 0; j < 6; j++) {
   var $root = document.createElement('div');
   $root.className = 'mobile-row mobile-justify-space-between';
 
@@ -164,7 +169,7 @@ function generateCastCards(event) {
 
   var $poster = document.createElement('img');
   $poster.className = 'profile-pic margin-right-5px';
-  $poster.setAttribute('src', event);
+    $poster.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.credits.cast[j].profile_path);
   $castCardDiv.appendChild($poster);
 
   var $castDetailDiv = document.createElement('div');
@@ -173,15 +178,16 @@ function generateCastCards(event) {
 
   var $realNameP = document.createElement('p');
   $realNameP.className = 'real-name';
-  $realNameP.textContent = event;
+  $realNameP.textContent = data.clickedMovie.credits.cast[j].name;
   $castDetailDiv.appendChild($realNameP);
 
   var $characterNameP = document.createElement('p');
   $characterNameP.className = 'character-name';
-  $characterNameP.textContent = event;
+  $characterNameP.textContent = 'as ' + data.clickedMovie.credits.cast[j].character;
   $castDetailDiv.appendChild($characterNameP);
 
-  // $castList.append($root);
+  $castList.append($root);
+  }
 }
 
 
