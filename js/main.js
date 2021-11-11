@@ -11,6 +11,7 @@ var $infoPageRating = document.querySelector('.rating');
 var $infoPageRuntime = document.querySelector('.runtime');
 var $infoPageOverview = document.querySelector('.overview');
 var $infoPagePoster = document.querySelector('.info-page-poster');
+var $castList = document.querySelector('.cast-list');
 
 function search() {
   event.preventDefault();
@@ -118,15 +119,14 @@ function clickInfoButton(event) {
   xhr.open('GET', 'https://api.themoviedb.org/3/movie/' + event.target.getAttribute('movie-id') + '?api_key=9ed2615a579d77bb72ade801a8902712&append_to_response=credits,releases');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    console.log(xhr.status);
-    console.log(xhr.response);
-    console.log(xhr.response.release_date);
-    console.log(xhr.response.release_date.slice(0, 4));
-    console.log(xhr.response.vote_average);
+    data.clickedMovie.release_date = xhr.response.release_date;
+    data.clickedMovie.release_year = xhr.response.release_date.slice(0, 4);
+    data.clickedMovie.vote_average = xhr.response.vote_average;
     console.log(xhr.response.genres);
     $infoPagePoster.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + xhr.response.poster_path);
     for (var j = 0; j < 7; j++) {
       console.log(xhr.response.credits.cast[j].name + ' as ' + xhr.response.credits.cast[j].character);
+      console.log('https://image.tmdb.org/t/p/w500' + xhr.response.credits.cast[j].profile_path);
     }
     for (var h = 0; h < xhr.response.credits.crew.length; h++) {
       if (xhr.response.credits.crew[h].known_for_department === 'Directing') {
@@ -149,3 +149,50 @@ function clickInfoButton(event) {
 }
 
 $searchedList.addEventListener('click', clickInfoButton);
+
+function generateCastCards(event) {
+  var $root = document.createElement('div');
+  $root.className = 'mobile-row mobile-justify-space-between';
+
+  var $rowDiv = document.createElement('div');
+  $rowDiv.className = 'row align-center';
+  $root.appendChild($rowDiv);
+
+  var $castCardDiv = document.createElement('div');
+  $castCardDiv.className = 'cast-card';
+  $rowDiv.appendChild($castCardDiv);
+
+  var $poster = document.createElement('img');
+  $poster.className = 'profile-pic margin-right-5px';
+  $poster.setAttribute('src', event);
+  $castCardDiv.appendChild($poster);
+
+  var $castDetailDiv = document.createElement('div');
+  $castDetailDiv.className = 'margin-top-bottom-3 line-height';
+  $castCardDiv.appendChild($castDetailDiv);
+
+  var $realNameP = document.createElement('p');
+  $realNameP.className = 'real-name';
+  $realNameP.textContent = event;
+  $castDetailDiv.appendChild($realNameP);
+
+  var $characterNameP = document.createElement('p');
+  $characterNameP.className = 'character-name';
+  $characterNameP.textContent = event;
+  $castDetailDiv.appendChild($characterNameP);
+
+  // $castList.append($root);
+}
+
+
+/* <div class="mobile-row mobile-justify-space-between">
+  <div class="row align-center">
+    <div class="cast-card">
+      <img src="images/lebron_james.jpeg" alt="lebron" class="profile-pic margin-right-5px">
+      <div class ="margin-top-bottom-3 line-height">
+        <p class ="real-name">Lebron James</p>
+        <p class ="character-name">as Lebron James</p>
+      </div>
+    </div>
+  </div>
+</div> */

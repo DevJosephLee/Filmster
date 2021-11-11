@@ -149,7 +149,6 @@ button:hover {
 .real-name,
 .character-name {
   font-size: 0.6rem;
-  display: inline-block;
 }
 
 .character-name {
@@ -207,9 +206,6 @@ ul {
     font-size: 1rem;
   }
 
-  .line-height-1 {
-    line-height: 20px;
-  }
 
   .info-page-poster {
     width: 250px;
@@ -239,10 +235,6 @@ ul {
     font-size: 0.8rem;
   }
 
-  .cast-card {
-    display: block;
-  }
-
   .page-header {
     font-size: 1rem;
   }
@@ -253,5 +245,13 @@ ul {
 
   .mobile-justify-space-between {
     justify-content: space-between;
+  }
+
+  .cast-card {
+    display: block;
+  }
+
+  .mobile-align-center {
+    align-items: center;
   }
 }
