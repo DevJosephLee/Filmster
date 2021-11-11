@@ -11,6 +11,9 @@ var $infoPageRating = document.querySelector('.rating');
 var $infoPageRuntime = document.querySelector('.runtime');
 var $infoPageOverview = document.querySelector('.overview');
 var $infoPagePoster = document.querySelector('.info-page-poster');
+var $infoPageStarRating = document.querySelector('.star-rating');
+var $infoPageGenres = document.querySelector('.genres');
+var $infoPageReleaseDate = document.querySelector('.release-date');
 var $castList = document.querySelector('.cast-list');
 
 function search() {
@@ -38,6 +41,7 @@ function clickLogo() {
   data.searchResult = [];
   data.searchName = '';
   $searchedList.textContent = '';
+  $castList.textContent = '';
 }
 
 $logoButton.addEventListener('click', clickLogo);
@@ -46,6 +50,7 @@ $logoButton.addEventListener('click', clickLogo);
 function clickBackButton() {
   switchViews('search-form');
   $searchedList.textContent = '';
+  $castList.textContent = '';
 }
 
 $backButton.addEventListener('click', clickBackButton);
@@ -108,6 +113,9 @@ function generateSearchedMoviesResults(data) {
 document.addEventListener('DOMContentLoaded', function() {
   switchViews(data.view);
   generateSearchedMoviesResults(data);
+  if (data.searchResult.length > 0) {
+    generateCastCards(data);
+  }
   $searchResultText.textContent = 'Search results for ' + data.searchName;
 })
 
@@ -120,35 +128,36 @@ function clickInfoButton(event) {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     data.clickedMovie = xhr.response;
+    console.log(xhr.response);
     $infoPagePoster.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.poster_path);
-    // data.clickedMovie[releaseDate] = xhr.response.release_date;
-    // var releaseDate = xhr.response.release_date;
-    // data.clickedMovie.releaseDate = releaseDate
-    // data.clickedMovie.releaseYear = xhr.response.release_date.slice(0, 4);
-    // data.clickedMovie.voteAverage = xhr.response.vote_average;
-    for (var k = 0; k < xhr.response.genres.length; k++) {
-      console.log(xhr.response.genres[k].name);
-    }
-    for (var h = 0; h < xhr.response.credits.crew.length; h++) {
-      if (xhr.response.credits.crew[h].known_for_department === 'Directing') {
-        console.log('director(s):', xhr.response.credits.crew[h].name);
-      }
-    }
-    for (var i = 0; i < xhr.response.releases.countries.length; i++) {
-      var movieRatingForCountries = xhr.response.releases.countries[i].iso_3166_1;
+    $infoPageTitle.textContent = data.clickedMovie.title;
+    $infoPageYear.textContent = data.clickedMovie.release_date.slice(0, 4);
+    for (var i = 0; i < data.clickedMovie.releases.countries.length; i++) {
+      var movieRatingForCountries = data.clickedMovie.releases.countries[i].iso_3166_1;
       if (movieRatingForCountries === 'US') {
-        movieRating = xhr.response.releases.countries[i].certification;
+        $infoPageRating.textContent = data.clickedMovie.releases.countries[i].certification;
       }
     }
-    console.log('rating:', movieRating);
-    console.log('runtime:', xhr.response.runtime);
-    console.log('overview:', xhr.response.overview);
-    console.log(xhr.response.production_companies);
-
+    $infoPageRuntime.textContent = data.clickedMovie.runtime;
+    $infoPageStarRating.textContent = data.clickedMovie.vote_average;
+    for (var k = 0; k < data.clickedMovie.genres.length; k++) {
+      $infoPageGenres.textContent = data.clickedMovie.genres[k].name;
+    }
+    $infoPageOverview.textContent = data.clickedMovie.overview;
+    for (var h = 0; h < data.clickedMovie.credits.crew.length; h++) {
+      if (data.clickedMovie.credits.crew[h].known_for_department === 'Directing') {
+        console.log('director(s):', data.clickedMovie.credits.crew[h].name);
+      }
+    }
+    $infoPageReleaseDate.textContent = data.clickedMovie.release_date;
+    for (var j = 0; j < data.clickedMovie.production_companies.length; j++) {
+      console.log(data.clickedMovie.production_companies[j].name);
+    }
     generateCastCards(data);
   })
   xhr.send();
   switchViews('movie-info');
+  data.view = 'movie-info';
 }
 
 $searchedList.addEventListener('click', clickInfoButton);
@@ -169,7 +178,7 @@ function generateCastCards(data) {
 
   var $poster = document.createElement('img');
   $poster.className = 'profile-pic margin-right-5px';
-    $poster.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.credits.cast[j].profile_path);
+  $poster.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.credits.cast[j].profile_path);
   $castCardDiv.appendChild($poster);
 
   var $castDetailDiv = document.createElement('div');
@@ -187,6 +196,7 @@ function generateCastCards(data) {
   $castDetailDiv.appendChild($characterNameP);
 
   $castList.append($root);
+
   }
 }
 

@@ -149,6 +149,7 @@ button:hover {
 .real-name,
 .character-name {
   font-size: 0.6rem;
+  white-space: initial;
 }
 
 .character-name {
@@ -161,9 +162,13 @@ button:hover {
   color: #5899EE;
 }
 
-.cast-card {
-  display: flex;
+.overview {
+  color: white;
 }
+
+/* .cast-card {
+  width: 16.7%;
+} */
 
 li {
   list-style: none;
@@ -253,5 +258,9 @@ ul {
 
   .mobile-align-center {
     align-items: center;
+  }
+
+  .cast-list {
+    flex-basis: 33%;
   }
 }
