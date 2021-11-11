@@ -67,3 +67,7 @@
 .line-height-1 {
   line-height: 20px;
 }
+
+.flex-wrap {
+  flex-wrap: wrap;
+}

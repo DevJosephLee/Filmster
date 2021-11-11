@@ -166,8 +166,17 @@ button:hover {
   color: white;
 }
 
-/* .cast-card {
-  width: 16.7%;
+.cast-card {
+  width: 100px;
+  align-items: start;
+}
+
+/* .cast-list {
+  flex-basis: 33%;
+} */
+
+/* .genres {
+  word-spacing: 5px;
 } */
 
 li {
@@ -260,7 +269,4 @@ ul {
     align-items: center;
   }
 
-  .cast-list {
-    flex-basis: 33%;
-  }
 }

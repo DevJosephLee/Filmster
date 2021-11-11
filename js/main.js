@@ -14,6 +14,8 @@ var $infoPagePoster = document.querySelector('.info-page-poster');
 var $infoPageStarRating = document.querySelector('.star-rating');
 var $infoPageGenres = document.querySelector('.genres');
 var $infoPageReleaseDate = document.querySelector('.release-date');
+var $infoPageDirector = document.querySelector('.director');
+var $infoPageDistributor = document.querySelector('.distributor');
 var $castList = document.querySelector('.cast-list');
 
 function search() {
@@ -46,15 +48,13 @@ function clickLogo() {
 
 $logoButton.addEventListener('click', clickLogo);
 
-
 function clickBackButton() {
-  switchViews('search-form');
+  switchViews(data.previousView);
   $searchedList.textContent = '';
   $castList.textContent = '';
 }
 
 $backButton.addEventListener('click', clickBackButton);
-
 
 function switchViews(viewName) {
   for (var i = 0; i < $viewNodeList.length; i++) {
@@ -113,9 +113,7 @@ function generateSearchedMoviesResults(data) {
 document.addEventListener('DOMContentLoaded', function() {
   switchViews(data.view);
   generateSearchedMoviesResults(data);
-  if (data.searchResult.length > 0) {
-    generateCastCards(data);
-  }
+  generateInfoPage(data);
   $searchResultText.textContent = 'Search results for ' + data.searchName;
 })
 
@@ -128,32 +126,7 @@ function clickInfoButton(event) {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     data.clickedMovie = xhr.response;
-    console.log(xhr.response);
-    $infoPagePoster.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.poster_path);
-    $infoPageTitle.textContent = data.clickedMovie.title;
-    $infoPageYear.textContent = data.clickedMovie.release_date.slice(0, 4);
-    for (var i = 0; i < data.clickedMovie.releases.countries.length; i++) {
-      var movieRatingForCountries = data.clickedMovie.releases.countries[i].iso_3166_1;
-      if (movieRatingForCountries === 'US') {
-        $infoPageRating.textContent = data.clickedMovie.releases.countries[i].certification;
-      }
-    }
-    $infoPageRuntime.textContent = data.clickedMovie.runtime;
-    $infoPageStarRating.textContent = data.clickedMovie.vote_average;
-    for (var k = 0; k < data.clickedMovie.genres.length; k++) {
-      $infoPageGenres.textContent = data.clickedMovie.genres[k].name;
-    }
-    $infoPageOverview.textContent = data.clickedMovie.overview;
-    for (var h = 0; h < data.clickedMovie.credits.crew.length; h++) {
-      if (data.clickedMovie.credits.crew[h].known_for_department === 'Directing') {
-        console.log('director(s):', data.clickedMovie.credits.crew[h].name);
-      }
-    }
-    $infoPageReleaseDate.textContent = data.clickedMovie.release_date;
-    for (var j = 0; j < data.clickedMovie.production_companies.length; j++) {
-      console.log(data.clickedMovie.production_companies[j].name);
-    }
-    generateCastCards(data);
+    generateInfoPage(data);
   })
   xhr.send();
   switchViews('movie-info');
@@ -161,6 +134,40 @@ function clickInfoButton(event) {
 }
 
 $searchedList.addEventListener('click', clickInfoButton);
+
+function generateInfoPage(data) {
+  var genre = '';
+  var distributor = '';
+  $infoPagePoster.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.poster_path);
+  $infoPageTitle.textContent = data.clickedMovie.title;
+  $infoPageYear.textContent = data.clickedMovie.release_date.slice(0, 4);
+  for (var i = 0; i < data.clickedMovie.releases.countries.length; i++) {
+    var movieRatingForCountries = data.clickedMovie.releases.countries[i].iso_3166_1;
+    if (movieRatingForCountries === 'US') {
+      $infoPageRating.textContent = data.clickedMovie.releases.countries[i].certification;
+    }
+  }
+  $infoPageRuntime.textContent = data.clickedMovie.runtime;
+  $infoPageStarRating.textContent = data.clickedMovie.vote_average;
+  for (var k = 0; k < data.clickedMovie.genres.length; k++) {
+    genre += data.clickedMovie.genres[k].name + ' ';
+    $infoPageGenres.textContent = genre;
+  }
+  $infoPageOverview.textContent = data.clickedMovie.overview;
+  for (var h = 0; h < data.clickedMovie.credits.crew.length; h++) {
+    if (data.clickedMovie.credits.crew[h].known_for_department === 'Directing') {
+      $infoPageDirector.textContent = data.clickedMovie.credits.crew[h].name;
+    }
+  }
+  $infoPageReleaseDate.textContent = data.clickedMovie.release_date;
+  for (var j = 0; j < data.clickedMovie.production_companies.length; j++) {
+    distributor += data.clickedMovie.production_companies[j].name + ', ';
+    $infoPageDistributor.textContent = distributor;
+  }
+  if (data.searchResult.length > 0) {
+    generateCastCards(data);
+  }
+}
 
 function generateCastCards(data) {
 
