@@ -1,12 +1,41 @@
+h3,
+h1,
+h2,
+h4,
+span,
+p {
+  color: white;
+}
+
 h1 {
   font-family: 'Revalia', cursive;
   font-size: 1.5rem;
 }
 
-h3,
-h1,
-span {
-  color: white;
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  /* font-weight: 300; */
+  font-size: 0.88rem;
+}
+
+/* .page-header {
+  font-weight: 200;
+} */
+
+h4 {
+  margin: 0;
+}
+
+.year-rating-min {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+i {
+  color: rgb(255, 165, 2);
 }
 
 .background-black {
@@ -57,14 +86,21 @@ button:hover {
   background-color: rgb(245, 197, 24);
 }
 
-.search-results-text {
-  font-weight: 300;
-  font-size: 0.88rem;
+.yellow-square-horizontal {
+  width: 30px;
+  height: 0.5rem;
+  background-color: rgb(245, 197, 24);
+}
 }
 
-.search-result-name {
+/* .search-results-text {
+  font-weight: 300;
   font-size: 0.88rem;
-}
+} */
+
+/* .search-result-name {
+  font-size: 0.88rem;
+} */
 
 .search-result-card {
   padding-bottom: 1rem;
@@ -82,6 +118,10 @@ button:hover {
   width: 100px;
 }
 
+.info-page-poster {
+  width: 100px;
+}
+
 .search-result-overview {
   color: white;
   font-style: italic;
@@ -90,6 +130,40 @@ button:hover {
 
 .border-bottom-white {
   border-bottom: 1px solid white;
+}
+
+.genre-section {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.overview {
+  font-size: 0.9rem;
+}
+
+.profile-pic {
+  width: 40px;
+  border-radius: 25px;
+}
+
+.real-name,
+.character-name {
+  font-size: 0.6rem;
+  display: inline-block;
+}
+
+.character-name {
+  color: #b8b8b8;
+}
+
+.director,
+.release-date,
+.distributor {
+  color: #5899EE;
+}
+
+.cast-card {
+  display: flex;
 }
 
 li {
@@ -135,5 +209,49 @@ ul {
 
   .line-height-1 {
     line-height: 20px;
+  }
+
+  .info-page-poster {
+    width: 250px;
+  }
+
+  .mobile-row {
+    display: flex;
+  }
+
+  .info-page-title {
+    font-size: 2rem;
+  }
+
+  .year-rating-min,
+  .genre-section,
+  .overview {
+    font-size: 1rem;
+  }
+
+  .profile-pic {
+    width: 100px;
+    border-radius: 50px;
+  }
+
+  .real-name,
+  .character-name {
+    font-size: 0.8rem;
+  }
+
+  .cast-card {
+    display: block;
+  }
+
+  .page-header {
+    font-size: 1rem;
+  }
+
+  .column-50 {
+    width: 50%;
+  }
+
+  .mobile-justify-space-between {
+    justify-content: space-between;
   }
 }
