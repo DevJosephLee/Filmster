@@ -1,7 +1,7 @@
 var $form = document.querySelector('form');
 var $searchInput = document.querySelector('.search-input');
 var $logoButton = document.querySelector('.logo-button');
-var $backButton = document.querySelector('.back-button');
+var $backButton = document.querySelectorAll('.back-button');
 var $viewNodeList = document.querySelectorAll('.view');
 var $searchedList = document.querySelector('.searched-list');
 var $searchResultText = document.querySelector('.search-results-text');
@@ -48,13 +48,24 @@ function clickLogo() {
 
 $logoButton.addEventListener('click', clickLogo);
 
-function clickBackButton() {
-  switchViews(data.previousView);
-  $searchedList.textContent = '';
+function clickBackButton(event) {
+  if (event.target.className !== 'back-button') {
+    return;
+  }
+  for (var i = 0; i < $backButton.length; i++) {
+    if (event.target.getAttribute('data-view') === 'search-form') {
+      switchViews('search-form')
+      data.view = 'search-form';
+      $searchedList.textContent = '';
+    } else if (data.view === 'movie-info') {
+      switchViews('search-results');
+      data.view = 'search-results';
+    }
+  }
   $castList.textContent = '';
 }
 
-$backButton.addEventListener('click', clickBackButton);
+document.addEventListener('click', clickBackButton);
 
 function switchViews(viewName) {
   for (var i = 0; i < $viewNodeList.length; i++) {
@@ -138,6 +149,7 @@ $searchedList.addEventListener('click', clickInfoButton);
 function generateInfoPage(data) {
   var genre = '';
   var distributor = '';
+  var director = '';
   $infoPagePoster.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.poster_path);
   $infoPageTitle.textContent = data.clickedMovie.title;
   $infoPageYear.textContent = data.clickedMovie.release_date.slice(0, 4);
