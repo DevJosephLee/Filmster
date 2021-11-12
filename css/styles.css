@@ -163,6 +163,15 @@ button:hover {
   white-space: nowrap;
 }
 
+.plus-button {
+  border-radius: 50%;
+  border: none;
+}
+
+.fa-plus {
+  color: black;
+}
+
 li {
   list-style: none;
 }
