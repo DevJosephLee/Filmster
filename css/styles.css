@@ -179,6 +179,21 @@ button:hover {
   margin-right: 7px;
 }
 
+.watchlist-poster {
+  max-width: 75px;
+  margin-right: 1rem;
+}
+
+.watchlist-details {
+  font-size: 0.65rem;
+}
+
+.watchlist-card {
+  padding: 15px;
+  background-color: black;
+  border-radius: 25px;
+}
+
 li {
   list-style: none;
 }
@@ -268,5 +283,13 @@ ul {
 
   .mobile-align-center {
     align-items: center;
+  }
+
+  .watchlist-details {
+    font-size: 1rem;
+  }
+
+  .watchlist-poster {
+    max-width: 100px;
   }
 }

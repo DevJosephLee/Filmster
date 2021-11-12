@@ -17,6 +17,8 @@ var $infoPageReleaseDate = document.querySelector('.release-date');
 var $infoPageDirector = document.querySelector('.director');
 var $infoPageDistributor = document.querySelector('.distributor');
 var $castList = document.querySelector('.cast-list');
+var $plusButton = document.querySelector('.plus-button');
+var $watchlistButton = document.querySelector('.watchlist-button');
 
 function search() {
   event.preventDefault();
@@ -64,6 +66,31 @@ function clickBackButton(event) {
 }
 
 document.addEventListener('click', clickBackButton);
+
+function clickPlusButton(event) {
+  console.log('success');
+  var watchlistObj = {
+    posterPath: 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.poster_path,
+    title: data.clickedMovie.title,
+    year: data.clickedMovie.release_date.slice(0, 4),
+    runtime: data.clickedMovie.runtime,
+    vote: data.clickedMovie.vote_average,
+    overview: data.clickedMovie.overview
+  }
+  data.watchlist = watchlistObj;
+  console.log(data.watchlist);
+}
+
+$plusButton.addEventListener('click', clickPlusButton);
+
+function clickWatchlistButton(event) {
+  console.log('success');
+  switchViews('watchlist');
+}
+
+$watchlistButton.addEventListener('click', clickWatchlistButton);
+
+
 
 function switchViews(viewName) {
   for (var i = 0; i < $viewNodeList.length; i++) {
@@ -182,37 +209,41 @@ function generateInfoPage(data) {
 function generateCastCards(data) {
 
   for (var j = 0; j < 6; j++) {
-  var $root = document.createElement('div');
-  $root.className = 'mobile-row mobile-justify-space-between';
+    var $root = document.createElement('div');
+    $root.className = 'mobile-row mobile-justify-space-between';
 
-  var $rowDiv = document.createElement('div');
-  $rowDiv.className = 'row align-center';
-  $root.appendChild($rowDiv);
+    var $rowDiv = document.createElement('div');
+    $rowDiv.className = 'row align-center';
+    $root.appendChild($rowDiv);
 
-  var $castCardDiv = document.createElement('div');
-  $castCardDiv.className = 'cast-card';
-  $rowDiv.appendChild($castCardDiv);
+    var $castCardDiv = document.createElement('div');
+    $castCardDiv.className = 'cast-card';
+    $rowDiv.appendChild($castCardDiv);
 
-  var $poster = document.createElement('img');
-  $poster.className = 'profile-pic margin-right-5px';
-  $poster.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.credits.cast[j].profile_path);
-  $castCardDiv.appendChild($poster);
+    var $poster = document.createElement('img');
+    $poster.className = 'profile-pic margin-right-5px';
+    $poster.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.credits.cast[j].profile_path);
+    $castCardDiv.appendChild($poster);
 
-  var $castDetailDiv = document.createElement('div');
-  $castDetailDiv.className = 'margin-top-bottom-3 line-height';
-  $castCardDiv.appendChild($castDetailDiv);
+    var $castDetailDiv = document.createElement('div');
+    $castDetailDiv.className = 'margin-top-bottom-3 line-height';
+    $castCardDiv.appendChild($castDetailDiv);
 
-  var $realNameP = document.createElement('p');
-  $realNameP.className = 'real-name';
-  $realNameP.textContent = data.clickedMovie.credits.cast[j].name;
-  $castDetailDiv.appendChild($realNameP);
+    var $realNameP = document.createElement('p');
+    $realNameP.className = 'real-name';
+    $realNameP.textContent = data.clickedMovie.credits.cast[j].name;
+    $castDetailDiv.appendChild($realNameP);
 
-  var $characterNameP = document.createElement('p');
-  $characterNameP.className = 'character-name';
-  $characterNameP.textContent = 'as ' + data.clickedMovie.credits.cast[j].character;
-  $castDetailDiv.appendChild($characterNameP);
+    var $characterNameP = document.createElement('p');
+    $characterNameP.className = 'character-name';
+    $characterNameP.textContent = 'as ' + data.clickedMovie.credits.cast[j].character;
+    $castDetailDiv.appendChild($characterNameP);
 
-  $castList.append($root);
+    $castList.append($root);
 
   }
+}
+
+function generateWatchlist(data) {
+
 }
