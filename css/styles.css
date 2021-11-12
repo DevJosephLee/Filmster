@@ -103,10 +103,7 @@ button:hover {
   border-radius: 3px;
 }
 
-.search-result-poster {
-  width: 100px;
-}
-
+.search-result-poster,
 .info-page-poster {
   width: 100px;
 }

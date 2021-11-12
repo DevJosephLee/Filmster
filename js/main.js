@@ -52,15 +52,13 @@ function clickBackButton(event) {
   if (event.target.className !== 'back-button') {
     return;
   }
-  for (var i = 0; i < $backButton.length; i++) {
-    if (event.target.getAttribute('data-view') === 'search-form') {
-      switchViews('search-form')
-      data.view = 'search-form';
-      $searchedList.textContent = '';
-    } else if (data.view === 'movie-info') {
-      switchViews('search-results');
-      data.view = 'search-results';
-    }
+  if (event.target.getAttribute('data-view') === 'search-form') {
+    switchViews('search-form')
+    data.view = 'search-form';
+    $searchedList.textContent = '';
+  } else if (data.view === 'movie-info') {
+    switchViews('search-results');
+    data.view = 'search-results';
   }
   $castList.textContent = '';
 }
