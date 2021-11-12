@@ -172,6 +172,13 @@ button:hover {
   color: black;
 }
 
+.watchlist-button {
+  background-color: black;
+  color: white;
+  border: none;
+  margin-right: 7px;
+}
+
 li {
   list-style: none;
 }
