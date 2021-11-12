@@ -4,7 +4,8 @@ var data = {
   searchName: '',
   searchResult: [],
   clickedMovie: {},
-  watchlist: []
+  watchlist: {},
+  watchlistList: []
 }
 
 var previousDataJSON = localStorage.getItem('movie-finder-local-storage');

@@ -19,6 +19,7 @@ var $infoPageDistributor = document.querySelector('.distributor');
 var $castList = document.querySelector('.cast-list');
 var $plusButton = document.querySelector('.plus-button');
 var $watchlistButton = document.querySelector('.watchlist-button');
+var $watchlistContainer = document.querySelector('.watchlist');
 
 function search() {
   event.preventDefault();
@@ -68,23 +69,18 @@ function clickBackButton(event) {
 document.addEventListener('click', clickBackButton);
 
 function clickPlusButton(event) {
-  console.log('success');
   var watchlistObj = {
     posterPath: 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.poster_path,
     title: data.clickedMovie.title,
-    year: data.clickedMovie.release_date.slice(0, 4),
-    runtime: data.clickedMovie.runtime,
-    vote: data.clickedMovie.vote_average,
     overview: data.clickedMovie.overview
   }
   data.watchlist = watchlistObj;
-  console.log(data.watchlist);
+  generateWatchlist(data);
 }
 
 $plusButton.addEventListener('click', clickPlusButton);
 
 function clickWatchlistButton(event) {
-  console.log('success');
   switchViews('watchlist');
 }
 
@@ -245,5 +241,47 @@ function generateCastCards(data) {
 }
 
 function generateWatchlist(data) {
+  $root = document.createElement('li');
 
+  $borderDiv = document.createElement('div');
+  $borderDiv.className = 'border-bottom-white padding-bottom';
+  $root.appendChild($borderDiv);
+
+  $watchListCardDiv = document.createElement('div');
+  $watchListCardDiv.className = 'row watchlist-card';
+  $borderDiv.appendChild($watchListCardDiv);
+
+  $watchListPosterImage = document.createElement('img');
+  $watchListPosterImage.className = 'watchlist-poster';
+  $watchListPosterImage.setAttribute('src', data.watchlist.posterPath);
+  $watchListCardDiv.appendChild($watchListPosterImage);
+
+  $watchListDetailsDiv = document.createElement('div');
+  $watchListDetailsDiv.className = 'watchlist-details';
+  $watchListCardDiv.appendChild($watchListDetailsDiv);
+
+  $watchListTitle = document.createElement('h4');
+  $watchListTitle.textContent = data.watchlist.title;
+  $watchListDetailsDiv.appendChild($watchListTitle);
+
+  $watchListOverview = document.createElement('p');
+  $watchListOverview.textContent = data.watchlist.overview
+  $watchListDetailsDiv.appendChild($watchListOverview);
+
+  $watchlistContainer.append($root);
 }
+
+
+//  <li>
+//   <div class="border-bottom-white padding-bottom">
+//     <div class="row watchlist-card">
+//       <img src="images/space_jam_poster.jpeg" alt="space-jam" class="watchlist-poster">
+//       <div class ="watchlist-details">
+//         <h4>Space Jam: A New Legacy</h4>
+//         <p>A rogue artificial intelligence kidnaps the son of famed
+//         basketball player LeBron James, who then has to
+//         work with Bugs Bunny to win a basketball game.</p>
+//       </div>
+//     </div>
+//   </div>
+// </li>
