@@ -42,15 +42,55 @@
     <div data-view="search-results" class="view hidden">
       <div class="container">
         <div class="row margin-top-bottom-2 justify-space-between align-center">
-          <div class="row search-results-text-box">
+          <div class="row">
             <div class="yellow-square margin-right-10px"></div>
-            <h3 class="search-results-text"></h3>
+            <h3 class="page-header search-results-text"></h3>
+          </div>
+          <div class="row">
+            <button data-view="search-form" class="back-button">BACK</button>
+          </div>
+        </div>
+        <ul class="searched-list">
+        </ul>
+      </div>
+    </div>
+    <div data-view="movie-info" class="view hidden">
+      <div class="container">
+        <div class="row margin-top-bottom-2 justify-space-between align-center">
+          <div class="row">
+            <div class="yellow-square margin-right-10px"></div>
+            <h3 class="page-header">Movie Info</h3>
           </div>
           <div class="row">
             <button class="back-button">BACK</button>
           </div>
         </div>
-        <ul class="searched-list">
+        <div class="mobile-row mobile-align-center">
+          <div class="text-align-center margin-right-20px">
+            <img src="images/placeholder_image.jpeg" alt="placeholder" class="info-page-poster">
+          </div>
+          <div class="line-height">
+            <h2 class="info-page-title"></h2>
+            <p class="year-rating-min"><span class="year"></span> | <span class="rating"></span> | <span
+                class="runtime"></span> min</p>
+            <i class="fas fa-star margin-right-10px"></i><span class="star-rating"></span>
+            <div class="genre-section margin-top-bottom-3">
+              <p class="genres"></p>
+            </div>
+            <p class="overview"></p>
+            <div class="director-releaseDate-distributor">
+              <p>Director(s) : <span class="director"></span></p>
+              <p>Release Date : <span class="release-date"></span></p>
+              <p>Distributor(s) : <span class="distributor"></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="row align-center margin-top-bottom-2">
+          <div class="yellow-square-horizontal margin-right-5px"></div>
+          <h4>CAST</h4>
+          <div class="yellow-square-horizontal margin-left-5px"></div>
+        </div>
+        <ul class="row justify-space-between cast-list flex-wrap">
         </ul>
       </div>
     </div>

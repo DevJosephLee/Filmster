@@ -3,7 +3,7 @@ var data = {
   view: 'search-form',
   searchName: '',
   searchResult: [],
-  searched: {}
+  clickedMovie: {}
 }
 
 var previousDataJSON = localStorage.getItem('movie-finder-local-storage');
