@@ -20,12 +20,12 @@ h3 {
   font-size: 0.88rem;
 }
 
-.page-header {
-  font-weight: 300;
-}
-
 h4 {
   margin: 0;
+}
+
+.page-header {
+  font-weight: 300;
 }
 
 .year-rating-min {

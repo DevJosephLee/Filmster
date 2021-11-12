@@ -218,16 +218,3 @@ function generateCastCards(data) {
 
   }
 }
-
-
-/* <div class="mobile-row mobile-justify-space-between">
-  <div class="row align-center">
-    <div class="cast-card">
-      <img src="images/lebron_james.jpeg" alt="lebron" class="profile-pic margin-right-5px">
-      <div class ="margin-top-bottom-3 line-height">
-        <p class ="real-name">Lebron James</p>
-        <p class ="character-name">as Lebron James</p>
-      </div>
-    </div>
-  </div>
-</div> */
