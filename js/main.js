@@ -244,7 +244,7 @@ function generateWatchlist(data) {
   $root = document.createElement('li');
 
   $borderDiv = document.createElement('div');
-  $borderDiv.className = 'border-bottom-white padding-bottom';
+  $borderDiv.className = 'border-bottom-white padding-top-bottom';
   $root.appendChild($borderDiv);
 
   $watchListCardDiv = document.createElement('div');
