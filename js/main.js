@@ -22,6 +22,7 @@ var $watchlistButton = document.querySelector('.watchlist-button');
 var $watchlistContainer = document.querySelector('.watchlist');
 var $noWatchListMessage = document.querySelector('.no-watchlist-message');
 var $overlay = document.querySelector('.row.hidden');
+var $trashButton = document.querySelectorAll('.fa-trash-alt');
 
 function search() {
   event.preventDefault();
@@ -272,9 +273,17 @@ function generateWatchlist(entry) {
     $watchListDetailsDiv.className = 'watchlist-details';
     $watchListCardDiv.appendChild($watchListDetailsDiv);
 
+    $watchListTitleRow = document.createElement('div');
+    $watchListTitleRow.className = 'row justify-space-between align-center';
+    $watchListDetailsDiv.appendChild($watchListTitleRow);
+
     $watchListTitle = document.createElement('h4');
     $watchListTitle.textContent = entry.title;
-    $watchListDetailsDiv.appendChild($watchListTitle);
+    $watchListTitleRow.appendChild($watchListTitle);
+
+    $watchListTrashButton = document.createElement('i');
+    $watchListTrashButton.className = 'fas fa-trash-alt';
+    $watchListTitleRow.appendChild($watchListTrashButton);
 
     $watchListMin = document.createElement('p');
     $watchListMin.textContent = entry.runtime + ' min';
@@ -292,3 +301,12 @@ function removeCheckMarkModal(event) {
 }
 
 $overlay.addEventListener('click', removeCheckMarkModal);
+
+function clickTrashButton(event) {
+  if (event.target.className !== 'fas fa-trash-alt') {
+    return;
+  }
+  console.log('success');
+}
+
+document.addEventListener('click', clickTrashButton);

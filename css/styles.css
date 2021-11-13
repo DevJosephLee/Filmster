@@ -83,7 +83,8 @@ ul {
   padding: 0.3rem;
 }
 
-button:hover {
+button,
+i:hover {
   cursor: pointer;
 }
 
@@ -239,6 +240,11 @@ button:hover {
 .overlay-text {
   color: white;
   font-size: 0.65rem;
+}
+
+.fa-trash-alt {
+  font-size: 1rem;
+  color: red;
 }
 
 @media screen and (min-width: 768px) {
