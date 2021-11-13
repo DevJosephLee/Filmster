@@ -204,6 +204,34 @@ button:hover {
   font-style: italic;
 }
 
+.modal {
+  background-color: white;
+  width: 200px;
+  text-align: center;
+  padding: 2.5rem;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.green-checkmark {
+  width: 75px;
+}
+
+.overlay-text {
+  color: black;
+  font-size: 0.65rem;
+}
+
 li {
   list-style: none;
 }
@@ -301,5 +329,18 @@ ul {
 
   .watchlist-poster {
     max-height: 150px;
+  }
+
+  .modal {
+    width: 400px;
+    padding: 2.5rem;
+  }
+
+  .green-checkmark {
+    width: 100px;
+  }
+
+  .overlay-text {
+    font-size: 1.2rem;
   }
 }

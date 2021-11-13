@@ -21,6 +21,7 @@ var $plusButton = document.querySelector('.plus-button');
 var $watchlistButton = document.querySelector('.watchlist-button');
 var $watchlistContainer = document.querySelector('.watchlist');
 var $noWatchListMessage = document.querySelector('.no-watchlist-message');
+var $overlay = document.querySelector('.row.hidden');
 
 function search() {
   event.preventDefault();
@@ -78,6 +79,7 @@ function clickPlusButton(event) {
   data.watchlist = watchlistObj;
   data.watchlistList.push(data.watchlist);
   generateWatchlist(watchlistObj);
+  $overlay.className = 'overlay view';
 }
 
 $plusButton.addEventListener('click', clickPlusButton);
@@ -279,3 +281,9 @@ function generateWatchlist(entry) {
 
     $watchlistContainer.prepend($root);
 }
+
+function removeCheckMarkModal(event) {
+  $overlay.className = 'row hidden';
+}
+
+$overlay.addEventListener('click', removeCheckMarkModal);
