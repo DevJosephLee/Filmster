@@ -17,6 +17,11 @@ var $infoPageReleaseDate = document.querySelector('.release-date');
 var $infoPageDirector = document.querySelector('.director');
 var $infoPageDistributor = document.querySelector('.distributor');
 var $castList = document.querySelector('.cast-list');
+var $plusButton = document.querySelector('.plus-button');
+var $watchlistButton = document.querySelector('.watchlist-button');
+var $watchlistContainer = document.querySelector('.watchlist');
+var $noWatchListMessage = document.querySelector('.no-watchlist-message');
+var $overlay = document.querySelector('.row.hidden');
 
 function search() {
   event.preventDefault();
@@ -64,6 +69,31 @@ function clickBackButton(event) {
 }
 
 document.addEventListener('click', clickBackButton);
+
+function clickPlusButton(event) {
+  var watchlistObj = {
+    posterPath: 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.poster_path,
+    title: data.clickedMovie.title,
+    overview: data.clickedMovie.overview,
+    runtime: data.clickedMovie.runtime
+  }
+  data.watchlist = watchlistObj;
+  data.watchlistList.push(data.watchlist);
+  generateWatchlist(watchlistObj);
+  $overlay.className = 'overlay view';
+}
+
+$plusButton.addEventListener('click', clickPlusButton);
+
+function clickWatchlistButton(event) {
+  switchViews('watchlist');
+  data.view = 'watchlist';
+  if (data.watchlistList.length > 0) {
+    $noWatchListMessage.className = 'view hidden';
+  }
+}
+
+$watchlistButton.addEventListener('click', clickWatchlistButton);
 
 function switchViews(viewName) {
   for (var i = 0; i < $viewNodeList.length; i++) {
@@ -123,7 +153,13 @@ document.addEventListener('DOMContentLoaded', function() {
   switchViews(data.view);
   generateSearchedMoviesResults(data);
   generateInfoPage(data);
+  for (var i = 0; i < data.watchlistList.length; i++) {
+    generateWatchlist(data.watchlistList[i]);
+  }
   $searchResultText.textContent = 'Search results for ' + data.searchName;
+  if (data.watchlistList.length > 0) {
+    $noWatchListMessage.className = 'view hidden';
+  }
 })
 
 function clickInfoButton(event) {
@@ -182,37 +218,77 @@ function generateInfoPage(data) {
 function generateCastCards(data) {
 
   for (var j = 0; j < 6; j++) {
-  var $root = document.createElement('div');
-  $root.className = 'mobile-row mobile-justify-space-between';
+    var $root = document.createElement('div');
+    $root.className = 'mobile-row mobile-justify-space-between';
 
-  var $rowDiv = document.createElement('div');
-  $rowDiv.className = 'row align-center';
-  $root.appendChild($rowDiv);
+    var $rowDiv = document.createElement('div');
+    $rowDiv.className = 'row align-center';
+    $root.appendChild($rowDiv);
 
-  var $castCardDiv = document.createElement('div');
-  $castCardDiv.className = 'cast-card';
-  $rowDiv.appendChild($castCardDiv);
+    var $castCardDiv = document.createElement('div');
+    $castCardDiv.className = 'cast-card';
+    $rowDiv.appendChild($castCardDiv);
 
-  var $poster = document.createElement('img');
-  $poster.className = 'profile-pic margin-right-5px';
-  $poster.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.credits.cast[j].profile_path);
-  $castCardDiv.appendChild($poster);
+    var $poster = document.createElement('img');
+    $poster.className = 'profile-pic margin-right-5px';
+    $poster.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.credits.cast[j].profile_path);
+    $castCardDiv.appendChild($poster);
 
-  var $castDetailDiv = document.createElement('div');
-  $castDetailDiv.className = 'margin-top-bottom-3 line-height';
-  $castCardDiv.appendChild($castDetailDiv);
+    var $castDetailDiv = document.createElement('div');
+    $castDetailDiv.className = 'margin-top-bottom-3 line-height';
+    $castCardDiv.appendChild($castDetailDiv);
 
-  var $realNameP = document.createElement('p');
-  $realNameP.className = 'real-name';
-  $realNameP.textContent = data.clickedMovie.credits.cast[j].name;
-  $castDetailDiv.appendChild($realNameP);
+    var $realNameP = document.createElement('p');
+    $realNameP.className = 'real-name';
+    $realNameP.textContent = data.clickedMovie.credits.cast[j].name;
+    $castDetailDiv.appendChild($realNameP);
 
-  var $characterNameP = document.createElement('p');
-  $characterNameP.className = 'character-name';
-  $characterNameP.textContent = 'as ' + data.clickedMovie.credits.cast[j].character;
-  $castDetailDiv.appendChild($characterNameP);
+    var $characterNameP = document.createElement('p');
+    $characterNameP.className = 'character-name';
+    $characterNameP.textContent = 'as ' + data.clickedMovie.credits.cast[j].character;
+    $castDetailDiv.appendChild($characterNameP);
 
-  $castList.append($root);
-
+    $castList.append($root);
   }
 }
+
+function generateWatchlist(entry) {
+    $root = document.createElement('li');
+
+    $borderDiv = document.createElement('div');
+    $borderDiv.className = 'border-bottom-white padding-top-bottom';
+    $root.appendChild($borderDiv);
+
+    $watchListCardDiv = document.createElement('div');
+    $watchListCardDiv.className = 'row watchlist-card';
+    $borderDiv.appendChild($watchListCardDiv);
+
+    $watchListPosterImage = document.createElement('img');
+    $watchListPosterImage.className = 'watchlist-poster';
+    $watchListPosterImage.setAttribute('src', entry.posterPath);
+    $watchListCardDiv.appendChild($watchListPosterImage);
+
+    $watchListDetailsDiv = document.createElement('div');
+    $watchListDetailsDiv.className = 'watchlist-details';
+    $watchListCardDiv.appendChild($watchListDetailsDiv);
+
+    $watchListTitle = document.createElement('h4');
+    $watchListTitle.textContent = entry.title;
+    $watchListDetailsDiv.appendChild($watchListTitle);
+
+    $watchListMin = document.createElement('p');
+    $watchListMin.textContent = entry.runtime + ' min';
+    $watchListDetailsDiv.appendChild($watchListMin);
+
+    $watchListOverview = document.createElement('p');
+    $watchListOverview.textContent = entry.overview;
+    $watchListDetailsDiv.appendChild($watchListOverview);
+
+    $watchlistContainer.prepend($root);
+}
+
+function removeCheckMarkModal(event) {
+  $overlay.className = 'row hidden';
+}
+
+$overlay.addEventListener('click', removeCheckMarkModal);

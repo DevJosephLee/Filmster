@@ -17,8 +17,9 @@
   <header>
     <div class="background-black">
       <div class="container">
-        <div class="row">
+        <div class="row justify-space-between">
           <button class="logo-button margin-top-bottom-2"><i class="fas fa-tv margin-right-5px"></i>Movie Finder</button>
+          <button class="watchlist-button">Watchlist</button>
         </div>
       </div>
     </div>
@@ -72,7 +73,7 @@
           <div class="line-height">
             <h2 class="info-page-title"></h2>
             <p class="year-rating-min"><span class="year"></span> | <span class="rating"></span> | <span
-                class="runtime"></span> min</p>
+                class="runtime"></span> min &nbsp;&nbsp;<button class="plus-button"><i class="fas fa-plus"></i></button></p>
             <i class="fas fa-star margin-right-10px"></i><span class="star-rating"></span>
             <div class="genre-section margin-top-bottom-3">
               <p class="genres"></p>
@@ -92,6 +93,32 @@
         </div>
         <ul class="row justify-space-between cast-list flex-wrap">
         </ul>
+      </div>
+    </div>
+    <div data-view="watchlist" class="view hidden">
+      <div class="container">
+        <div class="row margin-top-bottom-2 justify-space-between align-center">
+          <div class="row">
+            <div class="yellow-square margin-right-10px"></div>
+            <h3 class="page-header">Watchlist</h3>
+          </div>
+        </div>
+        <div class="no-watchlist-message text-align-center-2">
+          <i class="far fa-bookmark"></i>
+          <p class="empty-watchlist-message">Your Watchlist is empty</p>
+        </div>
+        <ul class="watchlist">
+        </ul>
+      </div>
+    </div>
+    <div class="row hidden">
+      <div class="overlay">
+        <div class="modal">
+          <p class="overlay-text">
+            Movie Added to Watchlist!
+          </p>
+          <img src="images/green_checkmark.png" class="green-checkmark">
+        </div>
       </div>
     </div>
   </main>

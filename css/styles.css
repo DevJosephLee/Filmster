@@ -24,6 +24,18 @@ h4 {
   margin: 0;
 }
 
+i {
+  color: rgb(255, 165, 2);
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding-inline-start: 0;
+}
+
 .page-header {
   font-weight: 300;
 }
@@ -31,10 +43,6 @@ h4 {
 .year-rating-min {
   font-size: 0.8rem;
   font-weight: 300;
-}
-
-i {
-  color: rgb(255, 165, 2);
 }
 
 .background-black {
@@ -163,12 +171,74 @@ button:hover {
   white-space: nowrap;
 }
 
-li {
-  list-style: none;
+.plus-button {
+  border-radius: 50%;
+  border: none;
 }
 
-ul {
-  padding-inline-start: 0;
+.fa-plus {
+  color: black;
+}
+
+.watchlist-button {
+  background-color: black;
+  color: white;
+  border: none;
+  margin-right: 7px;
+}
+
+.watchlist-poster {
+  max-height: 100px;
+  margin-right: 1rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.watchlist-details {
+  font-size: 0.65rem;
+}
+
+.watchlist-card {
+  padding: 15px;
+  background-color: black;
+  border-radius: 25px;
+}
+
+.fa-bookmark {
+  font-size: 2rem;
+}
+
+.empty-watchlist-message {
+  font-style: italic;
+}
+
+.modal {
+  background-color: #757575;
+  width: 200px;
+  text-align: center;
+  padding: 2.5rem;
+  border-radius: 10px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.green-checkmark {
+  width: 75px;
+}
+
+.overlay-text {
+  color: white;
+  font-size: 0.65rem;
 }
 
 @media screen and (min-width: 768px) {
@@ -252,5 +322,26 @@ ul {
 
   .mobile-align-center {
     align-items: center;
+  }
+
+  .watchlist-details {
+    font-size: 1rem;
+  }
+
+  .watchlist-poster {
+    max-height: 150px;
+  }
+
+  .modal {
+    width: 400px;
+    padding: 2.5rem;
+  }
+
+  .green-checkmark {
+    width: 100px;
+  }
+
+  .overlay-text {
+    font-size: 1.2rem;
   }
 }
