@@ -74,7 +74,8 @@ function clickPlusButton(event) {
   var watchlistObj = {
     posterPath: 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.poster_path,
     title: data.clickedMovie.title,
-    overview: data.clickedMovie.overview
+    overview: data.clickedMovie.overview,
+    runtime: data.clickedMovie.runtime
   }
   data.watchlist = watchlistObj;
   data.watchlistList.push(data.watchlist);
@@ -275,8 +276,12 @@ function generateWatchlist(entry) {
     $watchListTitle.textContent = entry.title;
     $watchListDetailsDiv.appendChild($watchListTitle);
 
+    $watchListMin = document.createElement('p');
+    $watchListMin.textContent = entry.runtime + ' min';
+    $watchListDetailsDiv.appendChild($watchListMin);
+
     $watchListOverview = document.createElement('p');
-    $watchListOverview.textContent = entry.overview
+    $watchListOverview.textContent = entry.overview;
     $watchListDetailsDiv.appendChild($watchListOverview);
 
     $watchlistContainer.prepend($root);

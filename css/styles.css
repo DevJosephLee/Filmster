@@ -24,6 +24,18 @@ h4 {
   margin: 0;
 }
 
+i {
+  color: rgb(255, 165, 2);
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding-inline-start: 0;
+}
+
 .page-header {
   font-weight: 300;
 }
@@ -31,10 +43,6 @@ h4 {
 .year-rating-min {
   font-size: 0.8rem;
   font-weight: 300;
-}
-
-i {
-  color: rgb(255, 165, 2);
 }
 
 .background-black {
@@ -205,10 +213,11 @@ button:hover {
 }
 
 .modal {
-  background-color: white;
+  background-color: #757575;
   width: 200px;
   text-align: center;
   padding: 2.5rem;
+  border-radius: 10px;
 }
 
 .overlay {
@@ -228,16 +237,8 @@ button:hover {
 }
 
 .overlay-text {
-  color: black;
+  color: white;
   font-size: 0.65rem;
-}
-
-li {
-  list-style: none;
-}
-
-ul {
-  padding-inline-start: 0;
 }
 
 @media screen and (min-width: 768px) {
