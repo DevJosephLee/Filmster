@@ -83,7 +83,8 @@ ul {
   padding: 0.3rem;
 }
 
-button:hover {
+button,
+i:hover {
   cursor: pointer;
 }
 
@@ -220,6 +221,12 @@ button:hover {
   border-radius: 10px;
 }
 
+.modal-2 {
+  background-color: #757575;
+  padding: 2.5rem;
+  border-radius: 10px;
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -239,6 +246,29 @@ button:hover {
 .overlay-text {
   color: white;
   font-size: 0.65rem;
+}
+
+.fa-trash-alt {
+  font-size: 1rem;
+  color: red;
+}
+
+.cancel-button {
+  background-color: #C4C4C4;
+  border: none;
+  width: 80px;
+  padding: 0.3rem;
+  font-size: 0.6rem;
+  border-radius: 5px;
+}
+
+.confirm-button {
+  background-color: #F5C518;
+  border: none;
+  width: 80px;
+  padding: 0.3rem;
+  font-size: 0.6rem;
+  border-radius: 5px;
 }
 
 @media screen and (min-width: 768px) {
@@ -343,5 +373,16 @@ button:hover {
 
   .overlay-text {
     font-size: 1.2rem;
+  }
+
+  .margin-top {
+    margin-top: 5rem;
+  }
+
+  .cancel-button,
+  .confirm-button {
+    width: 100px;
+    padding: 0.4rem;
+    font-size: 0.8rem;
   }
 }

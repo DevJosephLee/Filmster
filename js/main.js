@@ -21,7 +21,10 @@ var $plusButton = document.querySelector('.plus-button');
 var $watchlistButton = document.querySelector('.watchlist-button');
 var $watchlistContainer = document.querySelector('.watchlist');
 var $noWatchListMessage = document.querySelector('.no-watchlist-message');
-var $overlay = document.querySelector('.row.hidden');
+var $plusButtonOverlay = document.querySelector('.row.hidden');
+var $deleteWatchlistOverlay = document.querySelector('.row-2.hidden');
+var $cancelButton = document.querySelector('.cancel-button');
+var $confirmButton = document.querySelector('.confirm-button');
 
 function search() {
   event.preventDefault();
@@ -75,12 +78,13 @@ function clickPlusButton(event) {
     posterPath: 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.poster_path,
     title: data.clickedMovie.title,
     overview: data.clickedMovie.overview,
-    runtime: data.clickedMovie.runtime
+    runtime: data.clickedMovie.runtime,
+    movieId: data.clickedMovie.id
   }
   data.watchlist = watchlistObj;
   data.watchlistList.push(data.watchlist);
   generateWatchlist(watchlistObj);
-  $overlay.className = 'overlay view';
+  $plusButtonOverlay.className = 'row view';
 }
 
 $plusButton.addEventListener('click', clickPlusButton);
@@ -254,6 +258,7 @@ function generateCastCards(data) {
 
 function generateWatchlist(entry) {
     $root = document.createElement('li');
+    $root.setAttribute('movieId', entry.movieId);
 
     $borderDiv = document.createElement('div');
     $borderDiv.className = 'border-bottom-white padding-top-bottom';
@@ -272,9 +277,17 @@ function generateWatchlist(entry) {
     $watchListDetailsDiv.className = 'watchlist-details';
     $watchListCardDiv.appendChild($watchListDetailsDiv);
 
+    $watchListTitleRow = document.createElement('div');
+    $watchListTitleRow.className = 'row justify-space-between align-center';
+    $watchListDetailsDiv.appendChild($watchListTitleRow);
+
     $watchListTitle = document.createElement('h4');
     $watchListTitle.textContent = entry.title;
-    $watchListDetailsDiv.appendChild($watchListTitle);
+    $watchListTitleRow.appendChild($watchListTitle);
+
+    $watchListTrashButton = document.createElement('i');
+    $watchListTrashButton.className = 'fas fa-trash-alt';
+    $watchListTitleRow.appendChild($watchListTrashButton);
 
     $watchListMin = document.createElement('p');
     $watchListMin.textContent = entry.runtime + ' min';
@@ -288,7 +301,39 @@ function generateWatchlist(entry) {
 }
 
 function removeCheckMarkModal(event) {
-  $overlay.className = 'row hidden';
+  $plusButtonOverlay.className = 'row hidden';
 }
 
-$overlay.addEventListener('click', removeCheckMarkModal);
+$plusButtonOverlay.addEventListener('click', removeCheckMarkModal);
+
+function clickTrashButton(event) {
+  if (event.target.className !== 'fas fa-trash-alt') {
+    return;
+  }
+  $deleteWatchlistOverlay.className = 'row-2 view';
+  data.movieId = event.target.closest('li').getAttribute('movieid');
+}
+
+document.addEventListener('click', clickTrashButton);
+
+function clickCancelButton(event) {
+  $deleteWatchlistOverlay.className = 'row-2 hidden';
+}
+
+$cancelButton.addEventListener('click', clickCancelButton);
+
+function clickConfirmButton(event) {
+  $deleteWatchlistOverlay.className = 'row-2 hidden';
+  var deleteEntry = document.querySelector('li[movieId' + '=' + '"' + data.movieId + '"' + ']');
+  for (var i = 0; i < data.watchlistList.length; i++) {
+    if (data.movieId.includes(data.watchlistList[i].movieId)) {
+      data.watchlistList.splice(i, 1);
+    }
+  }
+  deleteEntry.remove();
+  if (data.watchlistList.length === 0) {
+    $noWatchListMessage.className = 'no-watchlist-message text-align-center-2';
+  }
+}
+
+$confirmButton.addEventListener('click', clickConfirmButton);
