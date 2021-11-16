@@ -329,7 +329,6 @@ function clickConfirmButton(event) {
     if (data.movieId.includes(data.watchlistList[i].movieId)) {
       data.watchlistList.splice(i, 1);
     }
-    console.log(data.movieId);
   }
   deleteEntry.remove();
   if (data.watchlistList.length === 0) {
