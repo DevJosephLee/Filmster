@@ -21,10 +21,10 @@ var $plusButton = document.querySelector('.plus-button');
 var $watchlistButton = document.querySelector('.watchlist-button');
 var $watchlistContainer = document.querySelector('.watchlist');
 var $noWatchListMessage = document.querySelector('.no-watchlist-message');
-// var $modalNodeList = document.querySelectorAll('.row.hidden');
 var $plusButtonOverlay = document.querySelector('.row.hidden');
 var $deleteWatchlistOverlay = document.querySelector('.row-2.hidden');
 var $cancelButton = document.querySelector('.cancel-button');
+var $confirmButton = document.querySelector('.confirm-button');
 
 function search() {
   event.preventDefault();
@@ -258,6 +258,7 @@ function generateCastCards(data) {
 
 function generateWatchlist(entry) {
     $root = document.createElement('li');
+    $root.setAttribute('movieId', entry.movieId);
 
     $borderDiv = document.createElement('div');
     $borderDiv.className = 'border-bottom-white padding-top-bottom';
@@ -300,15 +301,6 @@ function generateWatchlist(entry) {
 }
 
 function removeCheckMarkModal(event) {
-  // for (var i = 0; i < $modalNodeList.length; i++) {
-  //   if ($modalNodeList[i].className === 'row view') {
-  //     $modalNodeList[i].className = 'row hidden';
-  //   }
-  // }
-  // if (event.target.getAttribute('view') !== 'add') {
-  //   return;
-  // }
-  // console.log('success');
   $plusButtonOverlay.className = 'row hidden';
 }
 
@@ -319,7 +311,7 @@ function clickTrashButton(event) {
     return;
   }
   $deleteWatchlistOverlay.className = 'row-2 view';
-  console.log('success');
+  data.movieId = event.target.closest('li').getAttribute('movieid');
 }
 
 document.addEventListener('click', clickTrashButton);
@@ -330,12 +322,19 @@ function clickCancelButton(event) {
 
 $cancelButton.addEventListener('click', clickCancelButton);
 
-// function switchModalViews() {
-//   for (var i = 0; i < $modalNodeList.length; i++) {
-//     if ($modalNodeList[i].className === 'row view') {
-//       $modalNodeList[i].className = 'row hidden';
-//     } else {
-//       $modalNodeList[i].className = 'row view';
-//     }
-//   }
-// }
+function clickConfirmButton(event) {
+  $deleteWatchlistOverlay.className = 'row-2 hidden';
+  var deleteEntry = document.querySelector('li[movieId' + '=' + '"' + data.movieId + '"' + ']');
+  for (var i = 0; i < data.watchlistList.length; i++) {
+    if (data.movieId.includes(data.watchlistList[i].movieId)) {
+      data.watchlistList.splice(i, 1);
+    }
+    console.log(data.movieId);
+  }
+  deleteEntry.remove();
+  if (data.watchlistList.length === 0) {
+    $noWatchListMessage.className = 'no-watchlist-message text-align-center-2';
+  }
+}
+
+$confirmButton.addEventListener('click', clickConfirmButton);
