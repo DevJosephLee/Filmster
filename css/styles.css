@@ -247,6 +247,14 @@ i:hover {
   color: red;
 }
 
+/* .plusOverlay {
+  display: flex;
+} */
+
+/* .delete-watchlist-overlay {
+  display: flex;
+} */
+
 @media screen and (min-width: 768px) {
   h1 {
     font-size: 4rem;

@@ -21,8 +21,10 @@ var $plusButton = document.querySelector('.plus-button');
 var $watchlistButton = document.querySelector('.watchlist-button');
 var $watchlistContainer = document.querySelector('.watchlist');
 var $noWatchListMessage = document.querySelector('.no-watchlist-message');
-var $overlay = document.querySelector('.row.hidden');
-var $trashButton = document.querySelectorAll('.fa-trash-alt');
+// var $modalNodeList = document.querySelectorAll('.row.hidden');
+var $plusButtonOverlay = document.querySelector('.row.hidden');
+var $deleteWatchlistOverlay = document.querySelector('.row-2.hidden');
+var $cancelButton = document.querySelector('.cancel-button');
 
 function search() {
   event.preventDefault();
@@ -76,12 +78,13 @@ function clickPlusButton(event) {
     posterPath: 'https://image.tmdb.org/t/p/w500' + data.clickedMovie.poster_path,
     title: data.clickedMovie.title,
     overview: data.clickedMovie.overview,
-    runtime: data.clickedMovie.runtime
+    runtime: data.clickedMovie.runtime,
+    movieId: data.clickedMovie.id
   }
   data.watchlist = watchlistObj;
   data.watchlistList.push(data.watchlist);
   generateWatchlist(watchlistObj);
-  $overlay.className = 'overlay view';
+  $plusButtonOverlay.className = 'row view';
 }
 
 $plusButton.addEventListener('click', clickPlusButton);
@@ -297,16 +300,42 @@ function generateWatchlist(entry) {
 }
 
 function removeCheckMarkModal(event) {
-  $overlay.className = 'row hidden';
+  // for (var i = 0; i < $modalNodeList.length; i++) {
+  //   if ($modalNodeList[i].className === 'row view') {
+  //     $modalNodeList[i].className = 'row hidden';
+  //   }
+  // }
+  // if (event.target.getAttribute('view') !== 'add') {
+  //   return;
+  // }
+  // console.log('success');
+  $plusButtonOverlay.className = 'row hidden';
 }
 
-$overlay.addEventListener('click', removeCheckMarkModal);
+$plusButtonOverlay.addEventListener('click', removeCheckMarkModal);
 
 function clickTrashButton(event) {
   if (event.target.className !== 'fas fa-trash-alt') {
     return;
   }
+  $deleteWatchlistOverlay.className = 'row-2 view';
   console.log('success');
 }
 
 document.addEventListener('click', clickTrashButton);
+
+function clickCancelButton(event) {
+  $deleteWatchlistOverlay.className = 'row-2 hidden';
+}
+
+$cancelButton.addEventListener('click', clickCancelButton);
+
+// function switchModalViews() {
+//   for (var i = 0; i < $modalNodeList.length; i++) {
+//     if ($modalNodeList[i].className === 'row view') {
+//       $modalNodeList[i].className = 'row hidden';
+//     } else {
+//       $modalNodeList[i].className = 'row view';
+//     }
+//   }
+// }
