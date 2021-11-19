@@ -54,6 +54,7 @@ function search() {
   $searchResultText.textContent = 'Search results for ' + $searchInput.value;
   if (navigator.onLine === false) {
     $networkErrorMessage.className = 'network-error-message';
+    $loadingSpinner.className = 'hidden';
   } else {
     $networkErrorMessage.className = 'hidden';
   }
@@ -71,6 +72,7 @@ function clickLogo() {
   $castList.textContent = '';
   $noSearchResultsMessage.className = 'hidden';
   $networkErrorMessage.className = 'hidden';
+  $loadingSpinner.className = 'hidden';
 }
 
 $logoButton.addEventListener('click', clickLogo);
