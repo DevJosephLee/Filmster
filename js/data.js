@@ -18,3 +18,10 @@ window.addEventListener('beforeunload', function (event) {
   var dataJSON = JSON.stringify(data);
   localStorage.setItem('movie-finder-local-storage', dataJSON);
 })
+
+
+// if ($searchedList.textContet === '') {
+  //   $noSearchResultsMessage.className = 'no-search-results-message view';
+  // } else {
+  //   $noSearchResultsMessage.className = 'no-search-results-message hidden';
+  // }

@@ -23,8 +23,10 @@ var $watchlistContainer = document.querySelector('.watchlist');
 var $noWatchListMessage = document.querySelector('.no-watchlist-message');
 var $plusButtonOverlay = document.querySelector('.row.hidden');
 var $deleteWatchlistOverlay = document.querySelector('.row-2.hidden');
+var $loadingSpinner = document.querySelector('row-3.hidden')
 var $cancelButton = document.querySelector('.cancel-button');
 var $confirmButton = document.querySelector('.confirm-button');
+var $noSearchResultsMessage = document.querySelector('.no-search-results-message');
 
 function search() {
   event.preventDefault();
@@ -35,6 +37,9 @@ function search() {
   xhr.addEventListener('load', function () {
     data.searchResult = xhr.response.results;
     generateSearchedMoviesResults(data);
+    if ($searchedList.textContent !== '') {
+      $noSearchResultsMessage.className = 'view hidden';
+    }
   });
   xhr.send();
   switchViews('search-results');
@@ -226,7 +231,7 @@ function generateCastCards(data) {
     $root.className = 'mobile-row mobile-justify-space-between';
 
     var $rowDiv = document.createElement('div');
-    $rowDiv.className = 'row align-center';
+    $rowDiv.className = 'row align-start';
     $root.appendChild($rowDiv);
 
     var $castCardDiv = document.createElement('div');

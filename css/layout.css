@@ -60,6 +60,10 @@
   align-items: center;
 }
 
+.align-start {
+  align-items: start;
+}
+
 .text-align-center,
 .text-align-center-2 {
   text-align: center;

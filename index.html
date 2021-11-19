@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Filmster">
   <meta property="og:description" content="A web application for movie enthusiats who want to look up detailed information about a movie.">
-  <meta property="og:image" content="images/logo.ico">
+  <meta property="og:image" content="https://images.pond5.com/yellow-computer-monitor-screen-icon-footage-147692385_iconl.jpeg">
   <meta property="og:url" content="https://devjosephlee.github.io/Filmster/">
   <title>Filmster</title>
   <link rel="icon" href="images/logo.ico">
@@ -58,6 +58,9 @@
         <ul class="searched-list">
         </ul>
       </div>
+      <div class="no-search-results-message">
+        <h3 class="empty-message">Sorry, we couldn't find anything...</h3>
+      </div>
     </div>
     <div data-view="movie-info" class="view hidden">
       <div class="container">
@@ -109,7 +112,7 @@
         </div>
         <div class="no-watchlist-message text-align-center-2">
           <i class="far fa-bookmark"></i>
-          <p class="empty-watchlist-message">Your Watchlist is empty</p>
+          <p class="empty-message">Your Watchlist is empty</p>
         </div>
         <ul class="watchlist">
         </ul>
@@ -136,6 +139,14 @@
             <button class="confirm-button">CONFIRM</button>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row-3 hidden">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
     </div>
   </main>
