@@ -28,11 +28,6 @@ var $cancelButton = document.querySelector('.cancel-button');
 var $confirmButton = document.querySelector('.confirm-button');
 var $noSearchResultsMessage = document.querySelector('.no-search-results-message');
 var $networkErrorMessage = document.querySelector('.network-error-message.hidden');
-// console.log($networkErrorMessage);
-// console.log($loadingSpinner);
-
-
-
 
 function search() {
   event.preventDefault();
@@ -49,7 +44,7 @@ function search() {
     } else {
       $noSearchResultsMessage.className = 'no-search-results-message';
     }
-    if ($loadingSpinner.className = 'row-3 justify-center') {
+    if ($loadingSpinner.className === 'row-3 justify-center') {
       $loadingSpinner.className = 'hidden'
     }
   });
@@ -57,14 +52,12 @@ function search() {
   switchViews('search-results');
   data.view = 'search-results';
   $searchResultText.textContent = 'Search results for ' + $searchInput.value;
+  if (navigator.onLine === false) {
+    $networkErrorMessage.className = 'network-error-message';
+  } else {
+    $networkErrorMessage.className = 'hidden';
+  }
 }
-
- // if (window.navigator.onLine === true) {
-    //   $networkErrorMessage.className = 'hidden';
-    // } else {
-    //   $networkErrorMessage.className = 'network-error-message';
-    // }
-    // $loadingSpinner.classname = 'hidden';
 
 $form.addEventListener('submit', search);
 
@@ -77,6 +70,7 @@ function clickLogo() {
   $searchedList.textContent = '';
   $castList.textContent = '';
   $noSearchResultsMessage.className = 'hidden';
+  $networkErrorMessage.className = 'hidden';
 }
 
 $logoButton.addEventListener('click', clickLogo);
@@ -95,6 +89,7 @@ function clickBackButton(event) {
   }
   $castList.textContent = '';
   $noSearchResultsMessage.className = 'hidden';
+  $networkErrorMessage.className = 'hidden';
 }
 
 document.addEventListener('click', clickBackButton);
@@ -189,6 +184,11 @@ document.addEventListener('DOMContentLoaded', function() {
   $searchResultText.textContent = 'Search results for ' + data.searchName;
   if (data.watchlistList.length > 0) {
     $noWatchListMessage.className = 'view hidden';
+  }
+  if (data.searchResult.length > 0) {
+    $noSearchResultsMessage.className = 'hidden';
+  } else {
+    $noSearchResultsMessage.className = 'no-search-results-message';
   }
 })
 
