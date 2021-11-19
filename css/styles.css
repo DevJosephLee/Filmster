@@ -213,9 +213,9 @@ i:hover {
   font-style: italic;
 }
 
-.no-search-results-message {
-  display: flex;
-  justify-content: center;
+.no-search-results-message,
+.network-error-message {
+  text-align: center;
 }
 
 .modal {
@@ -281,7 +281,6 @@ i:hover {
   position: relative;
   width: 80px;
   height: 80px;
-  color:rgb(245, 197, 24);
 }
 .lds-ring div {
   box-sizing: border-box;
@@ -313,6 +312,13 @@ i:hover {
   }
 }
 
+.fa-exclamation-triangle {
+  font-size: 3rem;
+}
+
+.fa-exclamation-circle {
+  font-size: 3rem;
+}
 
 @media screen and (min-width: 768px) {
   h1 {

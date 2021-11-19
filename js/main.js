@@ -23,13 +23,20 @@ var $watchlistContainer = document.querySelector('.watchlist');
 var $noWatchListMessage = document.querySelector('.no-watchlist-message');
 var $plusButtonOverlay = document.querySelector('.row.hidden');
 var $deleteWatchlistOverlay = document.querySelector('.row-2.hidden');
-var $loadingSpinner = document.querySelector('row-3.hidden')
+var $loadingSpinner = document.querySelector('.row-3.hidden')
 var $cancelButton = document.querySelector('.cancel-button');
 var $confirmButton = document.querySelector('.confirm-button');
 var $noSearchResultsMessage = document.querySelector('.no-search-results-message');
+var $networkErrorMessage = document.querySelector('.network-error-message.hidden');
+// console.log($networkErrorMessage);
+// console.log($loadingSpinner);
+
+
+
 
 function search() {
   event.preventDefault();
+  $loadingSpinner.className = 'row-3 justify-center';
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.themoviedb.org/3/search/movie?api_key=9ed2615a579d77bb72ade801a8902712&query=' + $searchInput.value);
   data.searchName = $searchInput.value;
@@ -37,8 +44,13 @@ function search() {
   xhr.addEventListener('load', function () {
     data.searchResult = xhr.response.results;
     generateSearchedMoviesResults(data);
-    if ($searchedList.textContent !== '') {
-      $noSearchResultsMessage.className = 'view hidden';
+    if (data.searchResult.length > 0) {
+      $noSearchResultsMessage.className = 'hidden';
+    } else {
+      $noSearchResultsMessage.className = 'no-search-results-message';
+    }
+    if ($loadingSpinner.className = 'row-3 justify-center') {
+      $loadingSpinner.className = 'hidden'
     }
   });
   xhr.send();
@@ -46,6 +58,13 @@ function search() {
   data.view = 'search-results';
   $searchResultText.textContent = 'Search results for ' + $searchInput.value;
 }
+
+ // if (window.navigator.onLine === true) {
+    //   $networkErrorMessage.className = 'hidden';
+    // } else {
+    //   $networkErrorMessage.className = 'network-error-message';
+    // }
+    // $loadingSpinner.classname = 'hidden';
 
 $form.addEventListener('submit', search);
 
@@ -57,6 +76,7 @@ function clickLogo() {
   data.searchName = '';
   $searchedList.textContent = '';
   $castList.textContent = '';
+  $noSearchResultsMessage.className = 'hidden';
 }
 
 $logoButton.addEventListener('click', clickLogo);
@@ -74,6 +94,7 @@ function clickBackButton(event) {
     data.view = 'search-results';
   }
   $castList.textContent = '';
+  $noSearchResultsMessage.className = 'hidden';
 }
 
 document.addEventListener('click', clickBackButton);
