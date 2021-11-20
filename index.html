@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Filmster">
   <meta property="og:description" content="A web application for movie enthusiats who want to look up detailed information about a movie.">
-  <meta property="og:image" content="images/logo.ico">
+  <meta property="og:image" content="https://DevJosephLee.github.io/Filmster/images/logo.ico">
   <meta property="og:url" content="https://devjosephlee.github.io/Filmster/">
   <title>Filmster</title>
   <link rel="icon" href="images/logo.ico">
@@ -58,6 +58,10 @@
         <ul class="searched-list">
         </ul>
       </div>
+      <div class="no-search-results-message">
+        <i class="fas fa-exclamation-triangle"></i>
+        <h3 class="empty-message margin-top-bottom-1">Sorry, we couldn't find anything...</h3>
+      </div>
     </div>
     <div data-view="movie-info" class="view hidden">
       <div class="container">
@@ -109,7 +113,7 @@
         </div>
         <div class="no-watchlist-message text-align-center-2">
           <i class="far fa-bookmark"></i>
-          <p class="empty-watchlist-message">Your Watchlist is empty</p>
+          <p class="empty-message">Your Watchlist is empty</p>
         </div>
         <ul class="watchlist">
         </ul>
@@ -137,6 +141,18 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="row-3 hidden justify-center">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="network-error-message hidden">
+      <i class="fas fa-exclamation-circle"></i>
+      <h3 class="empty-message margin-top-bottom-1">Sorry, there was an error connecting to the network! Please check your internet.</h3>
     </div>
   </main>
   <script src="js/data.js"></script>
