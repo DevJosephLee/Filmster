@@ -134,6 +134,7 @@ i:hover {
 
 .overview {
   font-size: 0.9rem;
+  color: white;
 }
 
 .profile-pic {
@@ -155,10 +156,6 @@ i:hover {
 .release-date,
 .distributor {
   color: #5899EE;
-}
-
-.overview {
-  color: white;
 }
 
 .cast-card {
@@ -353,7 +350,6 @@ i:hover {
   .search-result-overview {
     font-size: 1rem;
   }
-
 
   .info-page-poster {
     width: 250px;
