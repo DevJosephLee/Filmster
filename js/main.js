@@ -26,7 +26,7 @@ var $deleteWatchlistOverlay = document.querySelector('.row-2.hidden');
 var $loadingSpinner = document.querySelector('.row-3.hidden')
 var $cancelButton = document.querySelector('.cancel-button');
 var $confirmButton = document.querySelector('.confirm-button');
-var $noSearchResultsMessage = document.querySelector('.no-search-results-message');
+var $noSearchResultsMessage = document.querySelector('.no-search-results-message.hidden');
 var $networkErrorMessage = document.querySelector('.network-error-message.hidden');
 
 function search() {
@@ -240,6 +240,7 @@ function generateInfoPage(data) {
   $infoPageReleaseDate.textContent = data.clickedMovie.release_date;
   for (var j = 0; j < data.clickedMovie.production_companies.length; j++) {
     distributor += data.clickedMovie.production_companies[j].name + ', ';
+    distributor[distributor.length - 2].textContent = ' ';
     $infoPageDistributor.textContent = distributor;
   }
   if (data.searchResult.length > 0) {
