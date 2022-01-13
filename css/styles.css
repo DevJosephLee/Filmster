@@ -321,6 +321,17 @@ i:hover {
   font-size: 3rem;
 }
 
+@media screen and (min-width: 498px) {
+  .info-page-poster {
+    width: 200px;
+  }
+
+  .cast-card {
+    width: 200px;
+  }
+}
+
+
 @media screen and (min-width: 768px) {
   h1 {
     font-size: 5rem;
