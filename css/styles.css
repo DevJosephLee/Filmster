@@ -322,7 +322,7 @@ i:hover {
 }
 
 @media screen and (min-width: 498px) {
-  .info-page-poster, {
+  .info-page-poster {
     width: 200px;
   }
 
