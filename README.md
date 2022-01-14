@@ -22,8 +22,8 @@ devjosephlee.github.io/filmster/
 - User can add movies to watchlist.
 - User can remove movies from watchlist.
 
-## GIFs!
-[Uploading Kapture 2022-01-13 at 17.17.43.gif…]()
+## GIFs
+![readMe](https://user-images.githubusercontent.com/68756038/149434763-b45aa74c-311f-430b-a747-ed8acfd95eb1.gif)
 
 
 ## Stretch Features
