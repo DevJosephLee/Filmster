@@ -7,7 +7,7 @@ A web application for movie enthusiasts who want to look up detailed information
 I've always been a huge movie fanatic and wanted build an app where anyone can easily access information for a movie. 
 
 ## Live Demo
-devjosephlee.github.io/filmster/
+https://devjosephlee.github.io/filmster/
 
 ## Technologies Used
 - HTML
