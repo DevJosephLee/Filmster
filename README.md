@@ -6,10 +6,10 @@ A web application for movie enthusiasts who want to look up detailed information
 ## Inspiration
 I've always been a huge movie fanatic and wanted build an app where anyone can easily access information for a movie. 
 
-## Link
+## Live Demo
 devjosephlee.github.io/filmster/
 
-## Technologies
+## Technologies Used
 - HTML
 - CSS
 - JavaScript
@@ -22,7 +22,7 @@ devjosephlee.github.io/filmster/
 - User can add movies to watchlist.
 - User can remove movies from watchlist.
 
-## GIFs
+## Preview
 ![readMe](https://user-images.githubusercontent.com/68756038/149434763-b45aa74c-311f-430b-a747-ed8acfd95eb1.gif)
 
 
