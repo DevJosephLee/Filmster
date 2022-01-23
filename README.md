@@ -1,4 +1,4 @@
-# filmster
+# Filmster
 
 ## Description
 A web application for movie enthusiasts who want to look up detailed information about a movie.
