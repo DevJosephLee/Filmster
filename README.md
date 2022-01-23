@@ -33,4 +33,4 @@ https://devjosephlee.github.io/filmster/
 - None
 
 ## Instructions
-Just click on the link provided above, and start searching!
+Just click on the link provided above, and start searching movies!
